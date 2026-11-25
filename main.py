@@ -38,15 +38,30 @@ def deneme_ekle():
     verileri_kaydet(veriler)
     print(f"Başarılı! '{sinav_adi}' kaydedildi. Hesaplanan Net: {net}")
 
+def denemeleri_listele():
+    print("\n--- Kayıtlı Deneme Sonuçları ---")
+    veriler = verileri_yukle()
+    if not veriler:
+        print("Henüz kayıtlı bir deneme bulunmuyor.")
+        return
+
+    print(f"{'No':<4} {'Tarih':<18} {'Sınav Adı':<25} {'D':<5} {'Y':<5} {'Net':<6}")
+    print("-" * 68)
+    for idx, kayit in enumerate(veriler, start=1):
+        print(f"{idx:<4} {kayit['tarih']:<18} {kayit['sinav_adi']:<25} {kayit['dogru']:<5} {kayit['yanlis']:<5} {kayit['net']:<6}")
+
 def main():
     while True:
         print("\n=== SINAV DENEME TAKİP SİSTEMİ ===")
         print("1. Yeni Deneme Sonucu Ekle")
+        print("2. Kayıtlı Denemeleri Listele")
         print("0. Çıkış")
         secim = input("Seçiminiz: ").strip()
 
         if secim == "1":
             deneme_ekle()
+        elif secim == "2":
+            denemeleri_listele()
         elif secim == "0":
             print("Çıkış yapılıyor...")
             break
